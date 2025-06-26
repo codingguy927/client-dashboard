@@ -1,10 +1,11 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import StatCard from "../components/StatCard";
 import ClientsTable from "../components/ClientsTable";
 import { Users, DollarSign, ClipboardList } from "lucide-react";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/authOptions";
 
 export default async function HomePage() {
   const session = await getServerSession(authOptions);
