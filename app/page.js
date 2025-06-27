@@ -1,9 +1,14 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import ClientPage from "./ClientPage";
+import ClientDashboard from "@/components/ClientDashboard";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/lib/authOptions";
+import Unauthorized from "@/components/Unauthorized";
 
 export default async function HomePage() {
   const session = await getServerSession(authOptions);
 
-  return <ClientPage session={session} />;
+  if (!session) {
+    return <Unauthorized />;
+  }
+
+  return <ClientDashboard session={session} />;
 }
