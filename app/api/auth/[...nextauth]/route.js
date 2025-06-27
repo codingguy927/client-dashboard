@@ -1,19 +1,20 @@
-import NextAuth from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import ClientDashboard from "@/components/ClientDashboard"; // NEW
 
-if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET || !process.env.NEXTAUTH_SECRET) {
-  throw new Error("Missing required environment variables for NextAuth");
+export default async function HomePage() {
+  const session = await getServerSession(authOptions);
+
+  if (!session) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-center">
+        <div>
+          <h1 className="text-2xl font-semibold mb-4">Unauthorized</h1>
+          <p>Please sign in to access the dashboard.</p>
+        </div>
+      </div>
+    );
+  }
+
+  return <ClientDashboard session={session} />;
 }
-
-export const authOptions = {
-  providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    }),
-  ],
-  secret: process.env.NEXTAUTH_SECRET,
-};
-
-const handler = NextAuth(authOptions);
-export { handler as GET, handler as POST };
