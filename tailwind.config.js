@@ -1,21 +1,18 @@
-// tailwind.config.js
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: 'class',
+  darkMode: 'class', // important!
   content: [
-    './app/**/*.{js,ts,jsx,tsx}',
-    './components/**/*.{js,ts,jsx,tsx}',
+    "./app/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
     extend: {
       colors: {
-        primary: '#3b82f6', // Tailwind blue-500
-        accent: '#f59e0b',  // Tailwind amber-500
+        primary: '#3b82f6',
+        accent: '#f59e0b',
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
-      },
-      boxShadow: {
-        card: '0 4px 12px rgba(0,0,0,0.05)',
       },
     },
   },
