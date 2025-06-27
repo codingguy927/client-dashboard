@@ -6,17 +6,6 @@ import Navbar from "../components/Navbar";
 import StatCard from "../components/StatCard";
 import ClientsTable from "../components/ClientsTable";
 import { Users, DollarSign, ClipboardList } from "lucide-react";
-import { useSession } from "next-auth/react";
-
-
-
-const { data: session, status } = useSession();
-
-if (status === "loading") return <p>Loading...</p>;
-if (!session) return <p>Unauthorized – please log in.</p>;
-
-return <div>Welcome, {session.user.name}</div>;
-
 
 export default async function HomePage() {
   const session = await getServerSession(authOptions);
