@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
@@ -10,9 +11,9 @@ export default async function HomePage() {
         <div>
           <h1 className="text-2xl font-semibold mb-4">Unauthorized</h1>
           <p>
-            <a href="/api/auth/signin" className="text-blue-500 underline">
+            <Link href="/api/auth/signin" className="text-blue-500 underline">
               Click here to sign in
-            </a>
+            </Link>
           </p>
         </div>
       </div>
